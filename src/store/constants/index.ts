@@ -1,0 +1,4 @@
+export const GET_TICKETS = 'GET_TICKETS';
+export const GET_TICKETS_ERROR = 'GET_TICKETS_ERROR';
+export const GET_TICKET = 'GET_TICKET';
+export const GET_TICKET_ERROR = 'GET_TICKET_ERROR';

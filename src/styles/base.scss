@@ -1,0 +1,27 @@
+* { box-sizing: border-box; }
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #eaeaea;
+}
+
+.container {
+  padding-left: 170px;
+  padding-right: 50px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+main {
+  padding: 20px;
+}

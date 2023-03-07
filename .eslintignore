@@ -1,0 +1,7 @@
+*.css
+*.svg
+node_modules
+src/authorization/withAllowAnonymous.jsx
+src/authorization/withAuthorization.jsx
+reportWebVitals.ts
+react-app-env.d.ts
