@@ -1,19 +1,20 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import ITicket from '../../models/ITicket';
 
 interface props {
   ticket: ITicket;
+  handleDelete: (id: string) => void
 }
-function TicketListItem({ ticket }: props) {
+function TicketListItem({ ticket, handleDelete }: props) {
   return (
-    <div className="match-card" onClick={()=>{}}>
-      <h4>{ticket.TicketIndex}</h4>
-      <p>{ticket.RegisterDate}</p>
-      <p>{ticket.CustomerName}</p>
-      <p>{ticket.ProductName}</p>
-      <p>{ticket.Description}</p>
-      <p>{ticket.ReadyDate}</p>
+    <div className="">
+      <h2>{ticket.ticketIndex}</h2>
+      <p>{ticket.registerDate}</p>
+      <p>{ticket.customerName}</p>
+      <p>{ticket.productName}</p>
+      <p>{ticket.description}</p>
+      <p>{ticket.readyDate}</p>
+      <button onClick={() => handleDelete(ticket.id)}>Delete</button>
     </div>
   );
 }
