@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
 
 import TicketListView from './views/TicketListView';
+import TicketDetailView from './views/TicketView';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<TicketListView />} />
+        <Route path="/ticket/:id" element={<TicketDetailView />} />
       </Routes>
     </>
   );

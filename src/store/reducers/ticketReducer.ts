@@ -1,16 +1,26 @@
 import { TicketActionTypes, TicketState } from '../types';
-import { ADD_TICKET_FAILURE, ADD_TICKET_REQUEST, ADD_TICKET_SUCCESS, DELETE_TICKET_FAILURE, DELETE_TICKET_REQUEST, DELETE_TICKET_SUCCESS, FETCH_TICKETS_FAILURE, FETCH_TICKETS_REQUEST, FETCH_TICKETS_SUCCESS, UPDATE_TICKET_FAILURE, UPDATE_TICKET_REQUEST, UPDATE_TICKET_SUCCESS } from "../constants";
+import { ADD_TICKET_FAILURE, ADD_TICKET_REQUEST, ADD_TICKET_SUCCESS, DELETE_TICKET_FAILURE, DELETE_TICKET_REQUEST, DELETE_TICKET_SUCCESS, FETCH_TICKETS_FAILURE, FETCH_TICKETS_REQUEST, FETCH_TICKETS_SUCCESS, FETCH_TICKET_FAILURE, FETCH_TICKET_REQUEST, FETCH_TICKET_SUCCESS, UPDATE_TICKET_FAILURE, UPDATE_TICKET_REQUEST, UPDATE_TICKET_SUCCESS } from "../constants";
 import ITicket from "../../models/ITicket";
 
 
 const initialState: TicketState = {
   tickets: [],
+  ticket: {
+    id: "",
+    ticketIndex: 0,
+    registerDate: "",
+    customerName: "",
+    productName: "",
+    description: "",
+    readyDate: ""
+  },
   loading: false,
   error: null
 };
 const ticketReducer = ( state: TicketState = initialState, action: TicketActionTypes): TicketState => {
   switch(action.type) {
     case FETCH_TICKETS_REQUEST:
+    case FETCH_TICKET_REQUEST:
     case ADD_TICKET_REQUEST:
     case UPDATE_TICKET_REQUEST:
     case DELETE_TICKET_REQUEST:
@@ -23,6 +33,13 @@ const ticketReducer = ( state: TicketState = initialState, action: TicketActionT
       return {
         ...state,
         tickets: action.payload,
+        loading: false,
+        error: null,
+      };
+    case FETCH_TICKET_SUCCESS:
+      return {
+        ...state,
+        ticket: action.payload,
         loading: false,
         error: null,
       };
@@ -50,6 +67,7 @@ const ticketReducer = ( state: TicketState = initialState, action: TicketActionT
         error: null
       };
     case FETCH_TICKETS_FAILURE:
+    case FETCH_TICKET_FAILURE:
     case ADD_TICKET_FAILURE:
     case UPDATE_TICKET_FAILURE:
     case DELETE_TICKET_FAILURE:

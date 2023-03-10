@@ -1,4 +1,4 @@
-import { ADD_TICKET_FAILURE, ADD_TICKET_REQUEST, ADD_TICKET_SUCCESS, DELETE_TICKET_FAILURE, DELETE_TICKET_REQUEST, DELETE_TICKET_SUCCESS, FETCH_TICKETS_FAILURE, FETCH_TICKETS_REQUEST, FETCH_TICKETS_SUCCESS, UPDATE_TICKET_FAILURE, UPDATE_TICKET_REQUEST, UPDATE_TICKET_SUCCESS } from "../constants";
+import { ADD_TICKET_FAILURE, ADD_TICKET_REQUEST, ADD_TICKET_SUCCESS, DELETE_TICKET_FAILURE, DELETE_TICKET_REQUEST, DELETE_TICKET_SUCCESS, FETCH_TICKETS_FAILURE, FETCH_TICKETS_REQUEST, FETCH_TICKETS_SUCCESS, FETCH_TICKET_FAILURE, FETCH_TICKET_REQUEST, FETCH_TICKET_SUCCESS, UPDATE_TICKET_FAILURE, UPDATE_TICKET_REQUEST, UPDATE_TICKET_SUCCESS } from "../constants";
 import ITicket from '../../models/ITicket';
 import { Action } from "redux";
 import store from "..";
@@ -7,6 +7,7 @@ import rootReducer from "../reducers";
 
 export interface TicketState {
   tickets: ITicket[];
+  ticket: ITicket;
   loading: boolean;
   error: string | null;
 }
@@ -22,6 +23,19 @@ interface FetchTicketsSuccessAction extends Action {
 
 interface FetchTicketsFailureAction extends Action {
   type: typeof FETCH_TICKETS_FAILURE;
+  payload: string;
+}
+interface FetchTicketRequestAction extends Action {
+  type: typeof FETCH_TICKET_REQUEST;
+}
+
+interface FetchTicketSuccessAction extends Action {
+  type: typeof FETCH_TICKET_SUCCESS;
+  payload: ITicket;
+}
+
+interface FetchTicketFailureAction extends Action {
+  type: typeof FETCH_TICKET_FAILURE;
   payload: string;
 }
 
@@ -71,6 +85,9 @@ export type TicketActionTypes =
   | FetchTicketsRequestAction
   | FetchTicketsSuccessAction
   | FetchTicketsFailureAction
+  | FetchTicketRequestAction
+  | FetchTicketSuccessAction
+  | FetchTicketFailureAction
   | AddTicketRequestAction
   | AddTicketSuccessAction
   | AddTicketFailureAction

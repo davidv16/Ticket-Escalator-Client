@@ -3,7 +3,7 @@ import { AppThunk, TicketActionTypes } from '../../types';
 // import { AppState, TicketActionTypes } from '../..';
 import ITicket from '../../../models/ITicket';
 import * as services from '../../../services/TicketService';
-import { ADD_TICKET_FAILURE, ADD_TICKET_REQUEST, ADD_TICKET_SUCCESS, DELETE_TICKET_FAILURE, DELETE_TICKET_REQUEST, DELETE_TICKET_SUCCESS, FETCH_TICKETS_FAILURE, FETCH_TICKETS_REQUEST, FETCH_TICKETS_SUCCESS, UPDATE_TICKET_FAILURE, UPDATE_TICKET_REQUEST, UPDATE_TICKET_SUCCESS } from '../../constants';
+import { ADD_TICKET_FAILURE, ADD_TICKET_REQUEST, ADD_TICKET_SUCCESS, DELETE_TICKET_FAILURE, DELETE_TICKET_REQUEST, DELETE_TICKET_SUCCESS, FETCH_TICKETS_FAILURE, FETCH_TICKETS_REQUEST, FETCH_TICKETS_SUCCESS, FETCH_TICKET_FAILURE, FETCH_TICKET_REQUEST, FETCH_TICKET_SUCCESS, UPDATE_TICKET_FAILURE, UPDATE_TICKET_REQUEST, UPDATE_TICKET_SUCCESS } from '../../constants';
 
   export const fetchTickets = (): AppThunk => async(dispatch: Dispatch<TicketActionTypes>) => {
     dispatch({type: FETCH_TICKETS_REQUEST});
@@ -17,6 +17,21 @@ import { ADD_TICKET_FAILURE, ADD_TICKET_REQUEST, ADD_TICKET_SUCCESS, DELETE_TICK
       //@ts-ignore
       const errorMsg = error.message;
       dispatch({type: FETCH_TICKETS_FAILURE, payload: errorMsg});
+    }
+  }
+
+  export const fetchTicket = (id: string): AppThunk => async(dispatch: Dispatch<TicketActionTypes>) => {
+    dispatch({type: FETCH_TICKET_REQUEST});
+    try {
+      const ticket: ITicket = await services.getTicket(id);
+      dispatch({
+        type: FETCH_TICKET_SUCCESS,
+        payload: ticket,
+      });
+    } catch (error) {
+      //@ts-ignore
+      const errorMsg = error.message;
+      dispatch({type: FETCH_TICKET_FAILURE, payload: errorMsg});
     }
   }
 
