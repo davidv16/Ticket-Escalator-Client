@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
 
 import TicketListView from './views/TicketListView';
-import TicketDetailView from './views/TicketView';
+import TicketDetailView from './views/TicketDetailView';
 
 function App() {
   return (

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import ITicket from '../../models/ITicket';
 import { addTicket, deleteTicket, fetchTickets, updateTicket } from '../../store/actions/TicketActions';
@@ -7,6 +8,7 @@ import TicketListItem from '../TicketListItem';
 
 function TicketList() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const tickets: ITicket[] = useAppSelector((state: RootState) => state.tickets.tickets);
   const loading = useAppSelector((state: RootState) => state.tickets.loading);
   const error = useAppSelector((state: RootState) => state.tickets.error);
@@ -15,23 +17,17 @@ function TicketList() {
     dispatch(fetchTickets());
   }, [dispatch]);
 
-  const handleAdd = (ticket: ITicket) => {
-    dispatch(addTicket(ticket));
-  };
-  const handleUpdate = (ticket: ITicket) => {
-    dispatch(updateTicket(ticket));
-  };
-
   const handleDelete = (id: string) => {
     dispatch(deleteTicket(id));
   };
 
   return (
     <>
-      <div className="">
+      <div className="listheader">
         <h2>Tickets</h2>
+        <button onClick={() => navigate(`/ticket/add`)}>Add Ticket</button>
       </div>
-      <div className="">
+      <div className="ticketlist">
         {loading && <p>Loading tickets...</p>}
         {error && <p>Error: {error}</p>}
         {tickets.map((ticket, i) => (

@@ -1,5 +1,6 @@
 import { ResultType } from "@remix-run/router/dist/utils";
 import ITicket from "../../models/ITicket";
+import ITicketAdd from "../../models/ITicketAdd";
 
 const API_URL = 'https://localhost:5001/api';
 
@@ -25,7 +26,8 @@ export const getTicket = async (id: string) => {
     return json;
 };
 
-export const addTicket = async (ticket: ITicket) => {
+export const addTicket = async (ticket: ITicketAdd) => {
+    console.log(JSON.stringify(ticket));
     const result = await fetch(`${API_URL}/tickets`, {
         method: 'POST',
         headers: {

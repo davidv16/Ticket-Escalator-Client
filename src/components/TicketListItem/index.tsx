@@ -9,6 +9,7 @@ interface props {
 function TicketListItem({ ticket, handleDelete }: props) {
   const navigate = useNavigate();
   return (
+    <>
     <div className="" onClick={() => navigate(`/ticket/${ticket.id}`)}>
       <h2>{ticket.ticketIndex}</h2>
       <p>{ticket.registerDate}</p>
@@ -16,8 +17,9 @@ function TicketListItem({ ticket, handleDelete }: props) {
       <p>{ticket.productName}</p>
       <p>{ticket.description}</p>
       <p>{ticket.readyDate}</p>
-      <button onClick={() => handleDelete(ticket.id)}>Delete</button>
     </div>
+      <button onClick={() => handleDelete(ticket.id)}>Delete</button>
+    </>
   );
 }
 
