@@ -13,12 +13,12 @@ function TicketListItem({ ticket, handleDelete }: props) {
     <div className="" onClick={() => navigate(`/ticket/${ticket.id}`)}>
       <h2>{ticket.ticketIndex}</h2>
       <p>{ticket.registerDate}</p>
-      <p>{ticket.customerName}</p>
-      <p>{ticket.productName}</p>
+      <p>{ticket.customer?.name}</p>
+      <p>{ticket.product?.name}</p>
       <p>{ticket.description}</p>
       <p>{ticket.readyDate}</p>
     </div>
-      <button onClick={() => handleDelete(ticket.id)}>Delete</button>
+      <button onClick={() => handleDelete(ticket.id as string)}>Delete</button>
     </>
   );
 }

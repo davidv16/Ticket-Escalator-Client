@@ -9,10 +9,10 @@ const initialState: TicketState = {
     id: "",
     ticketIndex: 0,
     registerDate: "",
-    customerName: "",
-    productName: "",
     description: "",
-    readyDate: ""
+    extraItems: "",
+    customerContacted: false,
+    readyDate: "",
   },
   loading: false,
   error: null
@@ -54,7 +54,7 @@ const ticketReducer = ( state: TicketState = initialState, action: TicketActionT
       return {
         ...state,
         tickets: state.tickets.map((ticket: ITicket) =>
-          ticket.id === action.payload.id ? action.payload : ticket
+          ticket.id === action.payload.ticket.id ? action.payload.ticket : ticket
           ),
         loading: false,
         error: null,

@@ -59,7 +59,9 @@ interface UpdateTicketRequestAction extends Action {
 
 interface UpdateTicketSuccessAction extends Action {
   type: typeof UPDATE_TICKET_SUCCESS;
-  payload: ITicket;
+  payload: {
+    id: string, ticket: ITicket;
+  }
 }
 
 interface UpdateTicketFailureAction extends Action {
