@@ -1,6 +1,6 @@
-import { TicketActionTypes, TicketState } from '../types';
 import { ADD_TICKET_FAILURE, ADD_TICKET_REQUEST, ADD_TICKET_SUCCESS, DELETE_TICKET_FAILURE, DELETE_TICKET_REQUEST, DELETE_TICKET_SUCCESS, FETCH_TICKETS_FAILURE, FETCH_TICKETS_REQUEST, FETCH_TICKETS_SUCCESS, FETCH_TICKET_FAILURE, FETCH_TICKET_REQUEST, FETCH_TICKET_SUCCESS, UPDATE_TICKET_FAILURE, UPDATE_TICKET_REQUEST, UPDATE_TICKET_SUCCESS } from "../constants";
 import ITicket from "../../models/ITicket";
+import { TicketState, TicketActionTypes } from "../types/ticketTypes";
 
 
 const initialState: TicketState = {

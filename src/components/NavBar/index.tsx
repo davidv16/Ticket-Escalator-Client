@@ -24,10 +24,16 @@ function NavBar() {
 			<nav>
 				<div className='thumbnail' style={{backgroundImage: 'url(https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/male/83.png)'}} />
 				<h3>notandi</h3>
+				<div className="links">
+					<h4>Dashboard</h4>
+					<h4 onClick={() => navigate(`/`)}>Tickets</h4>
+					<h4 onClick={() => navigate(`/customers`)}>Customers</h4>
+					<h4 onClick={() => navigate(`/products`)}>Products</h4>
+				</div>
         
 				<button type='button' name='logout' onClick={() => {
 					logout();
-				}}>skrá út</button>
+				}}>logout</button>
 			</nav>
 		</div>
 	);
