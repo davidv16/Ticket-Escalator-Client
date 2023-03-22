@@ -12,8 +12,7 @@ function CustomerList() {
   const navigate = useNavigate();
   const customers: ICustomer[] = useAppSelector((state: RootState) => state.customers.customers);
   const loading = useAppSelector((state: RootState) => state.customers.loading);
-  const error = useAppSelector((state: RootState) => state.customers.error);
-  console.log(customers);
+  const error = useAppSelector((state: RootState) => state.customers.error);  
   useEffect(() => {
     dispatch(fetchCustomers());
   }, [dispatch]);
