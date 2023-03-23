@@ -1,10 +1,11 @@
+import { error } from 'console';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import ITicket from '../../models/ITicket';
-import { addTicket, deleteTicket, fetchTickets, updateTicket } from '../../store/actions/TicketActions';
+import IProduct from '../../models/IProduct';
+import { deleteProduct, fetchProducts } from '../../store/actions/ProductActions';
 import { RootState } from '../../store/types';
-import TicketListItem from '../TicketListItem';
+import ProductListItem from '../ProductListItem';
 
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -16,19 +17,18 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
-function TicketList() {
+function ProductList() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const tickets: ITicket[] = useAppSelector((state: RootState) => state.tickets.tickets);
-  const loading = useAppSelector((state: RootState) => state.tickets.loading);
-  const error = useAppSelector((state: RootState) => state.tickets.error);
-
+  const products: IProduct[] = useAppSelector((state: RootState) => state.products.products);
+  const loading = useAppSelector((state: RootState) => state.products.loading);
+  const error = useAppSelector((state: RootState) => state.products.error);
   useEffect(() => {
-    dispatch(fetchTickets());
+    dispatch(fetchProducts());
   }, [dispatch]);
 
   const handleDelete = (id: string) => {
-    dispatch(deleteTicket(id));
+    dispatch(deleteProduct(id));
   };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -43,41 +43,39 @@ function TicketList() {
 
   return (
     <>
-      <div className="">
-        <h2>Tickets</h2>
-        <Button variant="contained" color='success' onClick={() => navigate(`/ticket/add`)}>Add Ticket</Button>
+      <div className="listheader">
+        <h2>Products</h2>
+        <Button variant="contained" color='success' onClick={() => navigate(`/ticket/add`)}>Add Product</Button>
       </div>
       <br/>
-      <div className="">
-        {loading && <p>Loading tickets...</p>}
+      <div className="productlist">
+        {loading && <p>Loading products...</p>}
         {error && <p>Error: {error}</p>}
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>index</StyledTableCell>
-                <StyledTableCell align="left">Date created</StyledTableCell>
-                <StyledTableCell align="left">Customer</StyledTableCell>
-                <StyledTableCell align="left">Product</StyledTableCell>
-                <StyledTableCell align="left">Description</StyledTableCell>
-                <StyledTableCell align="left">Date ready</StyledTableCell>
+                <StyledTableCell align="left">Name</StyledTableCell>
+                <StyledTableCell align="left">Vendor</StyledTableCell>
+                <StyledTableCell align="left">Serial Number</StyledTableCell>
+                <StyledTableCell align="left">Usage counter</StyledTableCell>
                 <StyledTableCell align="right"></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-            {tickets.map((ticket, i) => (
-              <TicketListItem
+            {products.map((product, i) => (
+              <ProductListItem
                 key={i}
-                ticket={ticket}
+                product={product}
                 handleDelete={(id: string) => handleDelete(id)}
               />
             ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
     </>
   );
 }
 
-export default TicketList;
+export default ProductList;

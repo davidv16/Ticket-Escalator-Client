@@ -1,4 +1,5 @@
 import React from 'react';
+import ProductList from '../../components/ProductList';
 import TicketForm from '../../components/TicketForm';
 
 function ProductListView() {
@@ -6,6 +7,7 @@ function ProductListView() {
     <>
       <div className='container'>
         <h2>ProductListView</h2>
+        <ProductList />
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import ICustomer from '../../models/ICustomer';
+import IProduct from '../../models/IProduct';
 
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -12,8 +12,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 interface props {
-  customer: ICustomer;
-  handleDelete: (id: string) => void
+  product: IProduct;
+  handleDelete: (id: string) => void;
 }
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -36,18 +36,19 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-function CustomerListItem({ customer, handleDelete }: props) {
+function ProductListItem({ product, handleDelete }: props) {
   const navigate = useNavigate();
   return (
     <>
-      <StyledTableRow key={customer.id} onClick={() => navigate(`/customer/${customer.id}`)}>
-        <StyledTableCell align="left">{customer.name}</StyledTableCell>
-        <StyledTableCell align="left">{customer.ssn}</StyledTableCell>
-        <StyledTableCell align="left">{customer.address}</StyledTableCell>
-        <StyledTableCell align="right"><button onClick={() => handleDelete(customer.id as string)}>Delete</button></StyledTableCell>
+      <StyledTableRow key={product.id} onClick={() => navigate(`/product/${product.id}`)}>
+        <StyledTableCell align="left">{product.name}</StyledTableCell>
+        <StyledTableCell align="left">{product.serialNumber}</StyledTableCell>
+        <StyledTableCell align="left">{product.vendor}</StyledTableCell>
+        <StyledTableCell align="left">{product.usageCounter}</StyledTableCell>
+        <StyledTableCell align="right"><button onClick={() => handleDelete(product.id as string)}>Delete</button></StyledTableCell>
       </StyledTableRow>
     </>
   );
 }
 
-export default CustomerListItem;
+export default ProductListItem;
